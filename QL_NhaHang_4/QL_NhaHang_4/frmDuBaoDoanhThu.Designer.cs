@@ -306,7 +306,7 @@
             this.btnTrain.FlatAppearance.BorderSize = 0;
             this.btnTrain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTrain.ForeColor = System.Drawing.Color.White;
-            this.btnTrain.Location = new System.Drawing.Point(239, 7);
+            this.btnTrain.Location = new System.Drawing.Point(248, 7);
             this.btnTrain.Name = "btnTrain";
             this.btnTrain.Size = new System.Drawing.Size(111, 31);
             this.btnTrain.TabIndex = 1;
