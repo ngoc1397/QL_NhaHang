@@ -49,7 +49,7 @@ namespace QL_NhaHang_4.Menu_Forms
                 btn.Text = ban.TenBan;
                 btn.Font = new Font("Times New Roman", 14);
                 btn.Click += btn_Click;
-                btn.Tag = ban;
+                btn.Tag = ban;//gửi tag cho từng bàn
                 btn.Name = ban.IdBan.ToString();
                 switch (ban.TinhTrang)
                 {
