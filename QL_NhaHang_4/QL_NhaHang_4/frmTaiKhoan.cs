@@ -34,7 +34,9 @@ namespace QL_NhaHang_4
             DAO_NguoiDung dAO_NguoiDung = new DAO_NguoiDung();
             if (MessageBox.Show("Bạn có chắc chắn muốn cập nhật tài khoản","Thông báo",MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                int kq = dAO_NguoiDung.sp_KiemTraDangNhap(txtTenDN.Text, txtMatKhauCu.Text);
+                string mKcu = GetMd5Hash(txtMatKhauCu.Text);
+                string mKmoi = GetMd5Hash(txtMatKhau.Text);
+                int kq = dAO_NguoiDung.sp_KiemTraDangNhap(txtTenDN.Text, mKcu);
                 if (kq == 0)
                 {
                     MessageBox.Show("Mật khẩu cũ không đúng", "Thông báo",MessageBoxButtons.OK,MessageBoxIcon.Error);

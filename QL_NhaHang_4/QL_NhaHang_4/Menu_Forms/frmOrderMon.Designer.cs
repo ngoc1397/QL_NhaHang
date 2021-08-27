@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lstChiTietHoaDon = new System.Windows.Forms.ListView();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -77,6 +78,7 @@
             this.btnMonLau = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.timerUI = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -785,6 +787,12 @@
             this.label8.TabIndex = 4;
             this.label8.Text = "DANH MỤC MÓN";
             // 
+            // timerUI
+            // 
+            this.timerUI.Enabled = true;
+            this.timerUI.Interval = 3000;
+            this.timerUI.Tick += new System.EventHandler(this.timerUI_Tick);
+            // 
             // frmOrderMon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -899,5 +907,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnChuyenBan;
         private System.Windows.Forms.ComboBox cboChuyenban;
+        private System.Windows.Forms.Timer timerUI;
     }
 }

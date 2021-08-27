@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace QL_NhaHang_4.Menu_Forms
@@ -63,6 +64,25 @@ namespace QL_NhaHang_4.Menu_Forms
                 flowBan.Controls.Add(btn);
             }
             txtTongTien.Text = string.Format("{0:0,0 đ}", 0);
+        }
+        private void UpdateUI()
+        {
+            DAO_Ban dAO_Ban = new DAO_Ban();
+            List<DTO_Ban> bans = dAO_Ban.getTableList();
+            int i = 0;
+            foreach (Button btn in flowBan.Controls)
+            {
+                switch (bans[i].TinhTrang)
+                {
+                    case 1:
+                        btn.BackColor = Color.Crimson;
+                        break;
+                    case 0:
+                        btn.BackColor = Color.White;
+                        break;
+                }
+                i++;
+            }
         }
         private void btn_Click(object sender, EventArgs e)
         {
@@ -302,13 +322,13 @@ namespace QL_NhaHang_4.Menu_Forms
         private void btnChuyenBan_Click(object sender, EventArgs e)
         {
             DTO_Ban ban = lstChiTietHoaDon.Tag as DTO_Ban;
-            int idBan1 = ban.IdBan;
-            int idBan2 = int.Parse(cboChuyenban.SelectedValue.ToString());
             if (ban == null)
             {
                 MessageBox.Show("Bạn chưa chọn bàn", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 return;
             }
+            int idBan1 = ban.IdBan;
+            int idBan2 = int.Parse(cboChuyenban.SelectedValue.ToString());
             if (MessageBox.Show(string.Format("Bạn có chắc chắn chuyến từ {0} sang bàn {1} hay không", ban.TenBan, idBan2 - 1), "Thông Báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK)
             {
                 if (idBan1 == idBan2)
@@ -349,6 +369,11 @@ namespace QL_NhaHang_4.Menu_Forms
             }
             frmInHoaDon frm = new frmInHoaDon(ban.IdBan, nguoiDung.TenHienThi, int.Parse(txtGiamGia.Text.ToString()));
             frm.ShowDialog();
+        }
+
+        private void timerUI_Tick(object sender, EventArgs e)
+        {
+            UpdateUI();
         }
     }
 }
